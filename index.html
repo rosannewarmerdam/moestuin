@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moestuin Vogelenzang - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-title">
+                    <h1>Moestuin Vogelenzang</h1>
+                    <p class="subtitle">Zandgrond &middot; Kustklimaat &middot; Zone 8b</p>
+                </div>
+                <div class="header-nav">
+                    <div class="current-month-badge" id="currentMonthBadge"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="tab-nav" id="tabNav">
+        <div class="container">
+            <div class="tab-list">
+                <button class="tab active" data-tab="overzicht">Overzicht</button>
+                <button class="tab" data-tab="tuinkaart">Tuinkaart</button>
+                <button class="tab" data-tab="vrucht">Vruchtbed</button>
+                <button class="tab" data-tab="wortel">Wortelbed</button>
+                <button class="tab" data-tab="aardappel">Aardappelbed</button>
+                <button class="tab" data-tab="bonen-hoog">Bonen hoog</button>
+                <button class="tab" data-tab="bonen-laag">Bonen laag</button>
+                <button class="tab" data-tab="kolen">Kolenbed</button>
+                <button class="tab" data-tab="blad">Bladbed</button>
+                <button class="tab" data-tab="aardbeien">Aardbeien</button>
+                <button class="tab" data-tab="bessen">Bessenstruiken</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- OVERZICHT TAB -->
+        <section class="tab-content active" id="tab-overzicht">
+            <div class="section-header">
+                <h2>Wat moet er nu gebeuren?</h2>
+                <p class="section-desc" id="currentMonthIntro"></p>
+            </div>
+
+            <div class="now-cards" id="nowCards">
+                <!-- Filled by JS -->
+            </div>
+
+            <div class="section-header" style="margin-top: 2.5rem;">
+                <h2>Jaaroverzicht alle bedden</h2>
+                <p class="section-desc">Klik op een bedtype voor meer details</p>
+            </div>
+
+            <div class="legend">
+                <div class="legend-item"><span class="legend-color" style="background:#7E57C2"></span> Voorzaaien (binnen)</div>
+                <div class="legend-item"><span class="legend-color" style="background:#43A047"></span> Buiten zaaien</div>
+                <div class="legend-item"><span class="legend-color" style="background:#FB8C00"></span> Uitplanten / Poten</div>
+                <div class="legend-item"><span class="legend-color" style="background:#E53935"></span> Oogsten</div>
+                <div class="legend-item"><span class="legend-color" style="background:#6D4C41"></span> Onderhoud</div>
+            </div>
+
+            <div class="overview-grid" id="overviewGrid">
+                <!-- Filled by JS -->
+            </div>
+        </section>
+
+        <!-- TUINKAART TAB -->
+        <section class="tab-content" id="tab-tuinkaart">
+            <div class="section-header">
+                <h2>Tuinkaart &amp; Rotatie</h2>
+                <p class="section-desc">Elk jaar schuiven de gewassen een bed op naar rechts</p>
+            </div>
+
+            <div class="year-selector">
+                <button class="year-btn" id="yearPrev">&larr;</button>
+                <span class="year-label" id="yearLabel"></span>
+                <button class="year-btn" id="yearNext">&rarr;</button>
+            </div>
+
+            <div class="garden-map" id="gardenMap">
+                <!-- Filled by JS -->
+            </div>
+
+            <div class="garden-legend" id="gardenLegend">
+                <!-- Filled by JS -->
+            </div>
+
+            <div class="card tip-card">
+                <h3>Over de rotatie</h3>
+                <p>Gewasrotatie is essentieel voor een gezonde bodem. Door elk jaar de gewassen te verplaatsen:</p>
+                <ul>
+                    <li><strong>Voorkom je bodemziekten</strong> &mdash; ziekteverwekkers krijgen geen kans zich op te bouwen</li>
+                    <li><strong>Benut je voedingsstoffen optimaal</strong> &mdash; bonen geven stikstof terug, kolen nemen het op</li>
+                    <li><strong>Verminder je plaagdruk</strong> &mdash; insecten vinden hun waardplanten niet meer terug</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- BED TYPE TABS (generated by JS) -->
+        <section class="tab-content" id="tab-vrucht"></section>
+        <section class="tab-content" id="tab-wortel"></section>
+        <section class="tab-content" id="tab-aardappel"></section>
+        <section class="tab-content" id="tab-bonen-hoog"></section>
+        <section class="tab-content" id="tab-bonen-laag"></section>
+        <section class="tab-content" id="tab-kolen"></section>
+        <section class="tab-content" id="tab-blad"></section>
+        <section class="tab-content" id="tab-aardbeien"></section>
+        <section class="tab-content" id="tab-bessen"></section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>Moestuin Vogelenzang &middot; Aangepast voor zandgrond &amp; kustklimaat</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
