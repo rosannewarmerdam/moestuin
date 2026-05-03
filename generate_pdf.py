@@ -31,6 +31,7 @@ KLEUREN = {
     'Kolen':     HexColor('#2E7D32'),
     'Blad':      HexColor('#26A69A'),
     'Bloemen':   HexColor('#BA68C8'),
+    'Bessen':    HexColor('#7B1FA2'),
 }
 
 TEKST_WIT = {'Kolen'}
@@ -70,12 +71,7 @@ def create_pdf():
     y = PAGE_H - 25 * mm
     c.setFont('Helvetica-Bold', 22)
     c.setFillColor(GROEN)
-    c.drawCentredString(PAGE_W / 2, y, 'Moestuin Vogelenzang')
-
-    y -= 7 * mm
-    c.setFont('Helvetica', 11)
-    c.setFillColor(HexColor('#777777'))
-    c.drawCentredString(PAGE_W / 2, y, 'Definitieve indeling seizoen 2026')
+    c.drawCentredString(PAGE_W / 2, y, 'Moestuin Vogelenzang 2026')
 
     y -= 5 * mm
     c.setFont('Helvetica', 8)
@@ -83,11 +79,13 @@ def create_pdf():
     c.drawCentredString(PAGE_W / 2, y, 'Zandgrond  •  Kustklimaat  •  Zone 8b')
 
     # --- Garden map ---
-    bed_w = 55 * mm
-    pad_w = 14 * mm
+    bed_w = 48 * mm
+    pad_w = 12 * mm
     rij_h = 11 * mm
     gap = 1.5 * mm
-    total_w = bed_w * 2 + pad_w
+    bessen_w = 16 * mm
+    bessen_gap = 4 * mm
+    total_w = bed_w * 2 + pad_w + bessen_gap + bessen_w
     start_x = (PAGE_W - total_w) / 2
     y -= 8 * mm
 
@@ -128,6 +126,23 @@ def create_pdf():
         c.setFont('Helvetica-Bold', 11)
         c.setFillColor(white if rechts in TEKST_WIT else HexColor('#3A2510'))
         c.drawCentredString(start_x + bed_w + pad_w + bed_w / 2, row_y + rij_h / 2 - 1.5 * mm, rechts)
+
+    # Frambozen & bessen strip on the right
+    bessen_x = start_x + bed_w * 2 + pad_w + bessen_gap
+    bessen_top = y - (rij_h + gap)
+    bessen_bottom = y - len(RIJEN) * (rij_h + gap)
+    bessen_h = bessen_top - bessen_bottom + rij_h
+    bessen_color = HexColor('#7B1FA2')
+    draw_rounded_rect(c, bessen_x, bessen_bottom, bessen_w, bessen_h, 2 * mm, bessen_color, darken(bessen_color, 0.7))
+
+    # Vertical text for bessen
+    c.saveState()
+    c.setFillColor(white)
+    c.setFont('Helvetica-Bold', 9)
+    c.translate(bessen_x + bessen_w / 2 + 1 * mm, bessen_bottom + bessen_h / 2)
+    c.rotate(90)
+    c.drawCentredString(0, 0, 'Frambozen & bessen')
+    c.restoreState()
 
     # Arrow on left side
     arrow_x = start_x - 10 * mm
@@ -185,7 +200,7 @@ def create_pdf():
     c.setFillColor(GROEN)
     c.drawString(margin, info_y, 'Wat zit er in elk bed?')
 
-    info_y -= 3 * mm
+    info_y -= 7 * mm
     gewassen = [
         ('Aardbei', 'Aardbeien (vast bed, vernieuw na 3-4 jaar)'),
         ('Vrucht', 'Tomaten, courgettes, pompoenen, komkommers'),
@@ -195,6 +210,7 @@ def create_pdf():
         ('Kolen', 'Boerenkool, broccoli, bloemkool, spruitjes, rode kool, koolrabi'),
         ('Blad', 'Kropsla, pluksla, rucola, spinazie, snijbiet, raapstelen, veldsla'),
         ('Bloemen', 'Bloemen (vast bed)'),
+        ('Bessen', 'Frambozen, aalbes, blauwe bessen, zwarte bessen'),
     ]
 
     for idx, (naam, omschrijving) in enumerate(gewassen):
