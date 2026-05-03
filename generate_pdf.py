@@ -17,7 +17,7 @@ RIJEN = [
     (5, 'Wortel', 'Wortel'),
     (6, 'Aardappel', 'Aardappel'),
     (7, 'Bonen', 'Bonen'),
-    (8, 'Bonen', 'Bloemen'),
+    (8, 'Bloemen', 'Bonen'),
     (9, 'Kolen', 'Kolen'),
     (10, 'Blad', 'Blad'),
 ]
@@ -97,12 +97,7 @@ def create_pdf():
     c.drawCentredString(PAGE_W / 2, y, '↑  Bloemen kant')
     y -= 3.5 * mm
 
-    # Column headers
-    c.setFont('Helvetica-Bold', 8)
-    c.setFillColor(HexColor('#555555'))
-    c.drawCentredString(start_x + bed_w / 2, y, 'Links')
-    c.drawCentredString(start_x + bed_w + pad_w + bed_w / 2, y, 'Rechts')
-    y -= 2.5 * mm
+    y -= 1 * mm
 
     # Draw rows (top to bottom)
     for i, (rij_nr, links, rechts) in enumerate(RIJEN):
@@ -185,7 +180,7 @@ def create_pdf():
     c.drawText(text_obj)
 
     # --- "Wat zit er in elk bed?" ---
-    info_y = note_y - 8 * mm
+    info_y = note_y - 12 * mm
     c.setFont('Helvetica-Bold', 10)
     c.setFillColor(GROEN)
     c.drawString(margin, info_y, 'Wat zit er in elk bed?')
